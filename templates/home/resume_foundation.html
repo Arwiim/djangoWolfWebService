@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Resume Foundation</h1>
+    <div class="grid-x" style="border: 1px solid green"> <!--Lienzo de fundation grid-x-->
+        <h2 class="cell large-4" style="border: 1px solid red;">Elemento 1</h2> <!--Cell para que forme parte del lienzo grid, alrge indica las casillas que va a ocupar-->
+        <h2 class="cell large-4" style="border: 1px solid brown">Elemento 2</h2>
+        <h2 class="cell large-4">Elemento 3</h2>
+
+        <div class="cell large-4 grid-x" style="border: solid 1px yellow;">
+            <h4 class="cell large-4">Otro Elemento 1</h4>
+            <h4 class="cell large-4">Otro Elemento 2</h4>
+            <h4 class="cell large-4">Otro Elemento 3</h4>
+        </div>
+    </div>
+    
+</body>
+</html>

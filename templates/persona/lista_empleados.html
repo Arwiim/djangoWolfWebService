@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Admin
+{% endblock titulo %}
+    
+{% block content %}
+
+{% include 'includes/header.html' %} <!--Recordar poner adentro del bloc content-->
+
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell">Lista Empleado</h1>
+        <div class="cell"> <!--Tabla carga empleados resultados-->
+            <table>
+                <thead>
+                  <tr>
+                    <th width="150">ID</th>
+                    <th width="150">Nombres</th>
+                    <th width="150">Apellidos</th>
+                    <th width="150">Departamentos</th>
+                    <th width="150">Editar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for n in empleados %}
+                  <tr>
+                    <td>{{n.id}}</td>
+                    <td>{{n.first_name}}</td>
+                    <td>{{n.last_name}}</td>
+                    <td>{{n.departamento}}</td>
+                    <td>
+                        <a class="button warning" href="{% url 'persona_app:modficar_empleado' n.id %}">Editar</a>
+                        <a class="button alert" href="{% url 'persona_app:eliminar_empleado' n.id %}">Eliminar</a>
+                    </td> 
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+        <div class="cell">
+          
+          {% if is_paginated %}
+          <nav aria-label="Pagination">
+            <ul class="pagination">
+              
+              {% if page_obj.has_previous %} <!--objecto de la paginacion, siempre importante validar pagina previa y siguiente--> 
+              <li class="pagination-previous">
+                <a href="?page={{page_obj.previous_page_number}}">Atras</a> <!--El objeto trae esa funcion de ver pagina previa-->
+              </li>
+              {% endif %}
+              
+              
+              {% for pagina in paginator.page_range %}
+              <!--Paginacion y color sobre pagina en numero de navegacion-->
+              {% ifequal pagina page_obj.number  %}
+              <li class="current"><span class="show-for-sr">You're on page</span>{{pagina}}</li>
+              {% else %}
+                <li><a href="?page={{pagina}}">{{pagina}}</a></li>
+              {% endifequal %}
+      
+              {% endfor %}
+
+              
+              {% if page_obj.has_next %} <!-- siempre importante validar pagina previa y siguiente--> 
+              <li class="pagination-next">
+                <a href="?page={{page_obj.next_page_number}}">Siguiente</a> <!--El objeto trae esa funcion de ver pagina previa-->
+              </li>
+              {% endif %}
+            </ul>
+          </nav>
+          {% endif %}     
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+    
+
+

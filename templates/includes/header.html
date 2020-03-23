@@ -1,0 +1,21 @@
+<div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li><a href="{% url 'persona_app:inicio' %}" class="menu-text">Wolf Caution Inicio</a></li>
+        <li>
+           <!--Forma no optima--> 
+          {# <a href="/list_all">Listar</a> forma no optima de hacerlo #} 
+          <!--Forma optima por url-->
+          <a href="{% url 'persona_app:empleados_all' %}">Listar</a>
+        </li>
+        <li><a href="{% url 'departamento_app:departamento_list' %}">Departamentos</a></li>
+        <li><a href="{% url 'persona_app:empleado-admin' %}">Administrar</a></li>
+        <li><a href="{% url 'departamento_app:nuevo_departamento' %}">Nuevo Departamento</a></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li><a href="{% url 'persona_app:empleador_add' %}" class="button">Registrar Nuevo Empleado</a></li>
+      </ul>
+    </div>
+  </div>

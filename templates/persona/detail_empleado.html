@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    {{ object.full_name }}
+{% endblock titulo %}
+    
+
+{% block content %}
+    {% include 'includes/header.html' %}
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x align-center">
+            <div class="cell large-4 card" style="width: 300px; margin-top: 10px;">
+                <div class="card-divider">
+                  {{empleado.get_jobs_display}} <!--Unicamente para choices-->
+                </div>
+                
+                {% if empleado.image %}
+                    <img src="{{ empleado.image.url }}">
+                {% else %}
+                    <img src="{% static 'img/potho-1.jpg' %}">
+                {% endif %}  
+                
+                <div class="card-section">
+                  <h4>{{empleado.full_name}}</h4>
+                  <p>{{ empleado.first_name }}</p>
+                  <p>{{ empleado.departamento.name }}</p>
+                  <p><span class="label">Habilidades:</span></p>
+                  <ul class="vertical menu">
+                    
+                    {% for hab in empleado.habilidades.all %} <!--Objecto de conjunto de datos-->
+                        <li>{{ hab.habilidad }}</li>
+                    {% endfor %}
+                        
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+{% endblock content %}
+    
+
+    <h1>Detalle del empleado {{titulo}}</h1>
+    <p>{{empleado}}</p>
+    <p>{{empleado.first_name}}</p>
+    <p>{{empleado.last_name}}</p>
+    <p>{{empleado.jobs}}</p>
+    <p>{{empleado.habilidades}}</p>
